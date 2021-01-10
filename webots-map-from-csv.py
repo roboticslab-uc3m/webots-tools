@@ -4,8 +4,7 @@
 # CopyPolicy: released under the terms of the LGPLv2.1
 # URL: https://github.com/roboticslab-uc3m/webots-tools
 
-outFile = open('map.wbt', 'w')
-outFile.write('#VRML_SIM R2021a utf8\n\
+myStr = '#VRML_SIM R2021a utf8\n\
 WorldInfo {\n\
   coordinateSystem "NUE"\n\
 }\n\
@@ -16,5 +15,8 @@ Viewpoint {\n\
 TexturedBackground {\n\
 }\n\
 TexturedBackgroundLight {\n\
-}\n')
+}\n'
+
+outFile = open('map.wbt', 'w')
+outFile.write(myStr)
 outFile.close()
