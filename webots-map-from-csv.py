@@ -17,6 +17,15 @@ TexturedBackground {\n\
 TexturedBackgroundLight {\n\
 }\n'
 
+#Floor {
+#  size 2 3
+#}
+
+#SolidBox {
+#  translation 0 0.05 0
+#  size 0.1 0.1 0.1
+#}
+
 outFile = open('map.wbt', 'w')
 outFile.write(myStr)
 outFile.close()
