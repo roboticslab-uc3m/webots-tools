@@ -21,6 +21,9 @@ nY = inFile.shape[1]
 print("lines = X =",inFile.shape[0])
 print("columns = Y =",inFile.shape[1])
 
+Ex = meterPerPixel
+Ey = meterPerPixel
+
 myStr = '#VRML_SIM R2021a utf8\n\
 WorldInfo {\n\
   coordinateSystem "NUE"\n\
@@ -34,9 +37,16 @@ TexturedBackground {\n\
 TexturedBackgroundLight {\n\
 }\n'
 
-#Floor {
-#  size 2 3
-#}
+#-- Create Floor
+floorEx = Ex * nX # x is x
+floorEy = Ey * nY # y is y but placed on world z (world y up)
+
+floorStr = "Floor {\n\
+  size $floorEx $floorEy\n\
+}\n"
+floorStr = floorStr.replace("$floorEx",str(floorEx))
+floorStr = floorStr.replace("$floorEy",str(floorEy))
+myStr += floorStr
 
 #SolidBox {
 #  translation 0 0.05 0
