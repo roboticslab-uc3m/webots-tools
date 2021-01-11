@@ -34,7 +34,7 @@ WorldInfo {\n\
 }\n\
 Viewpoint {\n\
   orientation -0.7 0.7 0.2 0.75\n\
-  position 1.2 1.6 2.3\n\
+  position 13.0 10.0 18.0\n\
 }\n\
 TexturedBackground {\n\
 }\n\
