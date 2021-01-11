@@ -19,14 +19,14 @@ inFile = genfromtxt(inFileStr, delimiter=',')
 print(inFile)
 
 nX = inFile.shape[0]
-nY = inFile.shape[1]
+nZ = inFile.shape[1]
 print("lines = X =",inFile.shape[0])
-print("columns = Y =",inFile.shape[1])
+print("columns = Z =",inFile.shape[1])
 
-Ez = boxHeight
+Ey = boxHeight
 
 Ex = meterPerPixel
-Ey = meterPerPixel
+Ez = meterPerPixel
 
 myStr = '#VRML_SIM R2021a utf8\n\
 WorldInfo {\n\
@@ -43,8 +43,8 @@ TexturedBackgroundLight {\n\
 
 #-- Create Floor
 
-floorEx = Ex * nX # x is x
-floorEy = Ey * nY # y is y but placed on world z (world y up)
+floorEx = meterPerPixel * nX # x is x
+floorEy = meterPerPixel * nZ # y is y but placed on world z (world y up)
 
 floorStr = 'Floor {\n\
   size $floorEx $floorEy\n\
@@ -64,20 +64,20 @@ boxStr = 'SolidBox {\n\
 
 for iX in range(nX):
     #print("iX:",iX)
-    for iY in range(nY):
+    for iZ in range(nZ):
         #print("* iY:",iY)
 
         #-- Skip box if map indicates a 0
-        if inFile[iX][iY] == 0:
+        if inFile[iX][iZ] == 0:
             continue
 
         #-- Add E___/2.0 to each to force begin at 0,0,0 (centered by default)
         x = Ex/2.0 + iX*meterPerPixel
-        y = Ey/2.0 + iY*meterPerPixel
-        z = Ez/2.0  # Add this to raise to floor level (centered by default)
+        z = Ez/2.0 + iZ*meterPerPixel
+        y = Ey/2.0  # Add this to raise to floor level (centered by default)
 
         #-- Create box
-        name = 'box_'+str(iX)+'_'+str(iY)
+        name = 'box_'+str(iX)+'_'+str(iZ)
         tmpBoxStr = boxStr.replace('$name',name)
         tmpBoxStr = tmpBoxStr.replace('$x',str(x))
         tmpBoxStr = tmpBoxStr.replace('$y',str(y))
