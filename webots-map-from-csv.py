@@ -57,6 +57,7 @@ myStr += floorStr
 #-- Create Walls
 
 boxStr = 'SolidBox {\n\
+  name "$name"\n\
   translation $x $y $z\n\
   size $Ex $Ey $Ez\n\
 }\n'
@@ -76,7 +77,9 @@ for iX in range(nX):
         z = Ez/2.0  # Add this to raise to floor level (centered by default)
 
         #-- Create box
-        tmpBoxStr = boxStr.replace('$x',str(x))
+        name = 'box_'+str(iX)+'_'+str(iY)
+        tmpBoxStr = boxStr.replace('$name',name)
+        tmpBoxStr = tmpBoxStr.replace('$x',str(x))
         tmpBoxStr = tmpBoxStr.replace('$y',str(y))
         tmpBoxStr = tmpBoxStr.replace('$z',str(z))
         tmpBoxStr = tmpBoxStr.replace('$Ex',str(Ex))
