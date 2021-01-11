@@ -4,6 +4,9 @@
 # CopyPolicy: released under the terms of the LGPLv2.1
 # URL: https://github.com/roboticslab-uc3m/webots-tools
 
+# Alternatively, could use the Supervisor API:
+# - https://github.com/cyberbotics/webots/blob/master/tests/api/controllers/supervisor_save_world/supervisor_save_world.c
+
 #-- User variables
 
 boxHeight = 1.0
