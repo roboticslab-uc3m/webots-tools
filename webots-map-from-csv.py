@@ -4,6 +4,23 @@
 # CopyPolicy: released under the terms of the LGPLv2.1
 # URL: https://github.com/roboticslab-uc3m/webots-tools
 
+#-- User variables
+boxHeight = 1.0
+inFileStr = 'assets/map1.csv'
+
+resolution = 1.0  # Just to make similar to MATLAB [pixel/meter]
+meterPerPixel = 1 / resolution  # [meter/pixel]
+
+#-- Program
+from numpy import genfromtxt
+inFile = genfromtxt(inFileStr, delimiter=',')
+print(inFile)
+
+nX = inFile.shape[0]
+nY = inFile.shape[1]
+print("lines = X =",inFile.shape[0])
+print("columns = Y =",inFile.shape[1])
+
 myStr = '#VRML_SIM R2021a utf8\n\
 WorldInfo {\n\
   coordinateSystem "NUE"\n\
