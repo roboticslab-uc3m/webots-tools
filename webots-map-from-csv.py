@@ -47,9 +47,12 @@ floorEx = meterPerPixel * nX # x is x
 floorEy = meterPerPixel * nZ # y is y but placed on world z (world y up)
 
 floorStr = 'Floor {\n\
+  translation $floorX 0 $floorZ\n\
   size $floorEx $floorEy\n\
 }\n'
 
+floorStr = floorStr.replace('$floorX',str(floorEx/2.0))
+floorStr = floorStr.replace('$floorZ',str(floorEy/2.0))
 floorStr = floorStr.replace('$floorEx',str(floorEx))
 floorStr = floorStr.replace('$floorEy',str(floorEy))
 myStr += floorStr
