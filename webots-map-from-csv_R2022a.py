@@ -22,22 +22,22 @@ inFile = genfromtxt(inFileStr, delimiter=',')
 print(inFile)
 
 nX = inFile.shape[0]
-nZ = inFile.shape[1]
+nY = inFile.shape[1]
 print("lines = X =",inFile.shape[0])
-print("columns = Z =",inFile.shape[1])
+print("columns = Y =",inFile.shape[1])
 
-Ey = boxHeight
+Ez = boxHeight
 
 Ex = meterPerPixel
-Ez = meterPerPixel
+Ey = meterPerPixel
 
 myStr = '#VRML_SIM R2022a utf8\n\
 WorldInfo {\n\
-  coordinateSystem "NUE"\n\
+  coordinateSystem "ENU"\n\
 }\n\
 Viewpoint {\n\
-  orientation -0.7 0.7 0.2 0.75\n\
-  position 13.0 10.0 18.0\n\
+  orientation -0.181 0.103 0.978 2.15\n\
+  position 14.5 -11.1 7.31\n\
 }\n\
 TexturedBackground {\n\
 }\n\
@@ -47,15 +47,15 @@ TexturedBackgroundLight {\n\
 #-- Create Floor
 
 floorEx = meterPerPixel * nX # x is x
-floorEy = meterPerPixel * nZ # y is y but placed on world z (world y up)
+floorEy = meterPerPixel * nY # y is y
 
 floorStr = 'Floor {\n\
-  translation $floorX 0 $floorZ\n\
+  translation $floorX $floorY 0\n\
   size $floorEx $floorEy\n\
 }\n'
 
 floorStr = floorStr.replace('$floorX',str(floorEx/2.0))
-floorStr = floorStr.replace('$floorZ',str(floorEy/2.0))
+floorStr = floorStr.replace('$floorY',str(floorEy/2.0))
 floorStr = floorStr.replace('$floorEx',str(floorEx))
 floorStr = floorStr.replace('$floorEy',str(floorEy))
 myStr += floorStr
@@ -70,20 +70,20 @@ boxStr = 'SolidBox {\n\
 
 for iX in range(nX):
     #print("iX:",iX)
-    for iZ in range(nZ):
+    for iY in range(nY):
         #print("* iY:",iY)
 
         #-- Skip box if map indicates a 0
-        if inFile[iX][iZ] == 0:
+        if inFile[iX][iY] == 0:
             continue
 
         #-- Add E___/2.0 to each to force begin at 0,0,0 (centered by default)
         x = Ex/2.0 + iX*meterPerPixel
-        z = Ez/2.0 + iZ*meterPerPixel
-        y = Ey/2.0  # Add this to raise to floor level (centered by default)
+        y = Ey/2.0 + iY*meterPerPixel
+        z = Ez/2.0  # Add this to raise to floor level (centered by default)
 
         #-- Create box
-        name = 'box_'+str(iX)+'_'+str(iZ)
+        name = 'box_'+str(iX)+'_'+str(iY)
         tmpBoxStr = boxStr.replace('$name',name)
         tmpBoxStr = tmpBoxStr.replace('$x',str(x))
         tmpBoxStr = tmpBoxStr.replace('$y',str(y))
