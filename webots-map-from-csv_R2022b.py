@@ -32,6 +32,10 @@ Ex = meterPerPixel
 Ey = meterPerPixel
 
 myStr = '#VRML_SIM R2022b utf8\n\
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"\n\
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"\n\
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/Floor.proto"\n\
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/solids/protos/SolidBox.proto"\n\
 WorldInfo {\n\
   coordinateSystem "ENU"\n\
 }\n\
