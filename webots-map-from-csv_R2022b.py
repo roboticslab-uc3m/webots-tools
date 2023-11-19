@@ -31,7 +31,7 @@ Ez = boxHeight
 Ex = meterPerPixel
 Ey = meterPerPixel
 
-myStr = '#VRML_SIM R2022a utf8\n\
+myStr = '#VRML_SIM R2022b utf8\n\
 WorldInfo {\n\
   coordinateSystem "ENU"\n\
 }\n\
